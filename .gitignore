@@ -3,6 +3,23 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+
+# myignore
+*.apk
+Library/:
+Logs/:
+Packages/:
+ProjectSettings/:
+Temp/:
+GoogleARCore/:
+PlayServicesResolver/:
+Plugins/:
+TextMesh Pro/:
+Config.cs
+XR/
+*.meta
+
+
 # User-specific files
 *.rsuser
 *.suo
@@ -65,7 +82,7 @@ StyleCopReport.xml
 *_h.h
 *.ilk
 *.meta
-*.obj
+#*.obj
 *.iobj
 *.pch
 *.pdb
