@@ -199,6 +199,8 @@ public class AppController : MonoBehaviour
                 var anchor = hit.Trackable.CreateAnchor(hit.Pose);
                 gameObject.transform.parent = anchor.transform;
             }
+            //todo1 创建颜色不同的苹果，代表不同的操作
+            //todo2 实现睡觉和向前走的动作
             else if (isModelExist > 2)
             {
                 //Debug.Log(isModelExist);

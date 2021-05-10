@@ -151,7 +151,7 @@ public class mouseControl : MonoBehaviour
             {
                 Frame.Raycast(positionX, positionY, raycastFilter, out Thit);
                 temp = Thit.Pose.position;
-                Debug.Log(temp);
+                //Debug.Log(temp);
                 transform.position = temp;
             }
 
