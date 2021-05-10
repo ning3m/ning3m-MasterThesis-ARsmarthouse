@@ -213,8 +213,8 @@ public class AppController : MonoBehaviour
                 // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
                 gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
                 // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
-                //var anchor = hit.Trackable.CreateAnchor(hit.Pose);
-                //gameObject.transform.parent = anchor.transform;
+                var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+                gameObject.transform.parent = anchor.transform;
             }
         }
     }
