@@ -545,7 +545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c229c4e32444841b5fa85ebf9df628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstPersonCamera: {fileID: 0}
   yMinLimit: -20
   yMaxLimit: 80
   xSpeed: 250

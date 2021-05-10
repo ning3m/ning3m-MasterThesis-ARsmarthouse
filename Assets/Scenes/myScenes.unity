@@ -151,7 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirstPersonCamera: {fileID: 1404565668}
-  prefab: {fileID: 7745856736144340136, guid: 9276da1366bd96049ba60f9d47af4482, type: 3}
+  squirrel: {fileID: 7745856736144340136, guid: 9276da1366bd96049ba60f9d47af4482,
+    type: 3}
+  appleY: {fileID: 978659659213619613, guid: 2bc57255ea92b854982e3a727e35152c, type: 3}
   temperature: 0
   illuminate: 0
   humidity: 0
@@ -227,75 +229,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf498fc35b538884db557f7a9a2c0ef9, type: 3}
---- !u!1001 &724652624
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6932481308216225298, guid: 9276da1366bd96049ba60f9d47af4482,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6932481308216225298, guid: 9276da1366bd96049ba60f9d47af4482,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.018535316
-      objectReference: {fileID: 0}
-    - target: {fileID: 6932481308216225298, guid: 9276da1366bd96049ba60f9d47af4482,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.24308714
-      objectReference: {fileID: 0}
-    - target: {fileID: 6932481308216225298, guid: 9276da1366bd96049ba60f9d47af4482,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.9580062
-      objectReference: {fileID: 0}
-    - target: {fileID: 6932481308216225298, guid: 9276da1366bd96049ba60f9d47af4482,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.16614452
-      objectReference: {fileID: 0}
-    - target: {fileID: 6932481308216225298, guid: 9276da1366bd96049ba60f9d47af4482,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.004646634
-      objectReference: {fileID: 0}
-    - target: {fileID: 6932481308216225298, guid: 9276da1366bd96049ba60f9d47af4482,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.9857051
-      objectReference: {fileID: 0}
-    - target: {fileID: 6932481308216225298, guid: 9276da1366bd96049ba60f9d47af4482,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.02756763
-      objectReference: {fileID: 0}
-    - target: {fileID: 6932481308216225298, guid: 9276da1366bd96049ba60f9d47af4482,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 3.2040002
-      objectReference: {fileID: 0}
-    - target: {fileID: 6932481308216225298, guid: 9276da1366bd96049ba60f9d47af4482,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -160.865
-      objectReference: {fileID: 0}
-    - target: {fileID: 6932481308216225298, guid: 9276da1366bd96049ba60f9d47af4482,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7745856736144340136, guid: 9276da1366bd96049ba60f9d47af4482,
-        type: 3}
-      propertyPath: m_Name
-      value: squirrelM
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9276da1366bd96049ba60f9d47af4482, type: 3}
 --- !u!1 &801168270
 GameObject:
   m_ObjectHideFlags: 0
