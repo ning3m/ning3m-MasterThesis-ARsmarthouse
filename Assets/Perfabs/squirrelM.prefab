@@ -448,6 +448,8 @@ GameObject:
   - component: {fileID: 7475876942547889661}
   - component: {fileID: 7475876942547889660}
   - component: {fileID: 7475876942547889649}
+  - component: {fileID: 1465673535815845319}
+  - component: {fileID: -3593880941543169641}
   m_Layer: 0
   m_Name: squirrelM
   m_TagString: Untagged
@@ -543,6 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c229c4e32444841b5fa85ebf9df628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FirstPersonCamera: {fileID: 0}
   yMinLimit: -20
   yMaxLimit: 80
   xSpeed: 250
@@ -557,6 +560,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1328bed284edfd4d8741c923253e472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1465673535815845319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7745856736144340136}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520bb47c46cf8624fafb307b7d1b862a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Camera: {fileID: 0}
+--- !u!114 &-3593880941543169641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7745856736144340136}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa17d122634046b4a8e23048891fafc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8173535700460062299

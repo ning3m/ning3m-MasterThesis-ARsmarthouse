@@ -6,18 +6,19 @@
 
 # myignore
 *.apk
-Library/:
-Logs/:
-Packages/:
-ProjectSettings/:
-Temp/:
-GoogleARCore/:
-PlayServicesResolver/:
-Plugins/:
-TextMesh Pro/:
+**/Library/**
+**/Logs/**
+**/Packages/**
+**/ProjectSettings/**
+**/Temp/**
+**/GoogleARCore/**
+**/PlayServicesResolver/**
+**/Plugins/**
+**/TextMesh Pro/**
 Config.cs
-XR/
+**/XR/**
 *.meta
+MasterThesis-ARsmarthouse
 
 
 # # User-specific files

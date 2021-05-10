@@ -8,6 +8,7 @@ using UnityEngine.XR.ARFoundation;
 
 public class mouseControl : MonoBehaviour
 {
+
     //旋转最大角度
     public int yMinLimit = -20;
     public int yMaxLimit = 80;
@@ -47,8 +48,76 @@ public class mouseControl : MonoBehaviour
 
     }
 
-
     private void Control3D()
+    {
+        Touch touch;
+        // 如果没有触屏或有触屏但触屏不等于刚按下；且没有任意一种鼠标点击
+        if ((Input.touchCount < 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began) && !(Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1) || Input.GetMouseButtonUp(2)))
+        {
+            return;
+        }
+
+
+        if (Input.GetMouseButton(0) || (Input.touchCount > 0 && (touch = Input.GetTouch(0)).phase == TouchPhase.Began))
+        {
+            //Debug.Log(Perfeb.isModelExist);
+
+            if (Input.touchCount > 0 && !Input.GetMouseButton(0))
+            {
+                // 如果是触屏
+                touch = Input.GetTouch(0);
+                positionX = touch.position.x;
+                positionY = touch.position.y;
+            }
+            else if (Input.touchCount < 1 && Input.GetMouseButton(0))
+            {
+
+                //如果是鼠标
+                positionX = Input.mousePosition.x;
+                positionY = Input.mousePosition.y;
+            }
+
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(positionX, positionY));
+            RaycastHit hitObject;
+            TrackableHit Thit = new TrackableHit();
+            TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon | TrackableHitFlags.PlaneWithinBounds;
+            if (Physics.Raycast(ray, out hitObject) && !isObjectSelect)
+            {
+                moveObject = hitObject.collider.gameObject;
+                moveObjectName = hitObject.transform.name;
+                isObjectSelect = true;
+                Debug.Log(isObjectSelect);
+                Debug.Log(name);
+                Debug.Log(moveObjectName);
+                
+            }
+            if (name == moveObjectName)
+            {
+                
+                Frame.Raycast(positionX, positionY, raycastFilter, out Thit);
+
+                temp = Thit.Pose.position;
+                Debug.Log(temp);
+
+                transform.position = temp;
+            }
+
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            //移动后，当鼠标放开，重置取到的objectName。
+            //否则，当鼠标放开再点击时，将会无论是否点到目标物体都移动上一个物体（因为moveObjectName没变所以if永远为真）
+
+            moveObjectName = "default";
+            isObjectSelect = false;
+            //Debug.Log(isObjectSelect);
+        }
+    }
+
+
+
+    /*private void Control3DARFoundation()
     {
         Touch touch;
         // 如果没有触屏或有触屏但触屏不等于刚按下；且没有任意一种鼠标点击
@@ -77,7 +146,7 @@ public class mouseControl : MonoBehaviour
                 positionY = Input.mousePosition.y;
             }
 
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3(positionX, positionY));
+            //Ray ray = FirstPersonCamera.ScreenPointToRay(new Vector3(positionX, positionY));
             RaycastHit hitObject;
             TrackableHit Thit = new TrackableHit();
             TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon | TrackableHitFlags.PlaneWithinBounds;
@@ -88,7 +157,7 @@ public class mouseControl : MonoBehaviour
                     //moveObject = hitObject.collider.gameObject;
                     //moveObjectName = hitObject.transform.name;
                     isObjectSelect = true;
-                    Debug.Log(isObjectSelect);
+                    //Debug.Log(isObjectSelect);
                 }
                 
                 
@@ -107,7 +176,7 @@ public class mouseControl : MonoBehaviour
                     Debug.Log(temp);
 
                     transform.position = temp;
-                }*/
+                }
             }
    
         }
@@ -116,11 +185,13 @@ public class mouseControl : MonoBehaviour
         {
             Vector2 position = new Vector2(positionX, positionY);
             Debug.Log(position);
-            Debug.Log(hits);
-            Debug.Log(UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon);
+            //Debug.Log(hits);
+            //Debug.Log(UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon);
+            Debug.Log(arRaycastManager.Raycast(position, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon));
             if (arRaycastManager.Raycast(position, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
             {
                 Pose hitPose = hits[0].pose;
+                Debug.Log(hitPose.position);
                 transform.position = hitPose.position;
                 transform.rotation = hitPose.rotation;
             }
@@ -137,9 +208,9 @@ public class mouseControl : MonoBehaviour
 
             moveObjectName = "default";
             isObjectSelect = false;
-            Debug.Log(isObjectSelect);
+            //Debug.Log(isObjectSelect);
         }
-    }
+    }*/
 
     private void Control2D()
     {
