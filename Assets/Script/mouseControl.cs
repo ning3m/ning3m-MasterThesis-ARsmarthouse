@@ -44,12 +44,17 @@ public class mouseControl : MonoBehaviour
 
     void Update()
     {
-        Control3D();
+        /*if (Input.touchCount < 1 && !(Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1) || Input.GetMouseButtonUp(2)))
+        {
+            return;
+        }*/
+
+            Control3DMouse();
 
     }
-
-    private void Control3D()
+    /*private void Control3DTouch()
     {
+
         Touch touch;
         // 如果没有触屏或有触屏但触屏不等于刚按下；且没有任意一种鼠标点击
         if ((Input.touchCount < 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began) && !(Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1) || Input.GetMouseButtonUp(2)))
@@ -89,16 +94,64 @@ public class mouseControl : MonoBehaviour
                 Debug.Log(isObjectSelect);
                 Debug.Log(name);
                 Debug.Log(moveObjectName);
-                
+
             }
             if (name == moveObjectName)
             {
-                
+
                 Frame.Raycast(positionX, positionY, raycastFilter, out Thit);
 
                 temp = Thit.Pose.position;
                 Debug.Log(temp);
 
+                transform.position = temp;
+            }
+
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            //移动后，当鼠标放开，重置取到的objectName。
+            //否则，当鼠标放开再点击时，将会无论是否点到目标物体都移动上一个物体（因为moveObjectName没变所以if永远为真）
+
+            moveObjectName = "default";
+            isObjectSelect = false;
+            //Debug.Log(isObjectSelect);
+        }
+    }*/
+
+    private void Control3DMouse()
+    {
+        if (!(Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1) || Input.GetMouseButtonUp(2)))
+        {
+            return;
+        }
+        // 如果没有触屏或有触屏但触屏不等于刚按下；且没有任意一种鼠标点击
+        if (Input.GetMouseButton(0))
+        {
+            //Debug.Log(Perfeb.isModelExist);
+            positionX = Input.mousePosition.x;
+            positionY = Input.mousePosition.y;
+
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(positionX, positionY));
+            RaycastHit hitObject;
+            TrackableHit Thit = new TrackableHit();
+            TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon | TrackableHitFlags.PlaneWithinBounds;
+            if (Physics.Raycast(ray, out hitObject) && !isObjectSelect)
+            {
+                moveObject = hitObject.collider.gameObject;
+                moveObjectName = hitObject.transform.name;
+                isObjectSelect = true;
+                //Debug.Log(isObjectSelect);
+                //Debug.Log(name);
+                //Debug.Log(moveObjectName);
+                
+            }
+            if (name == moveObjectName)
+            {
+                Frame.Raycast(positionX, positionY, raycastFilter, out Thit);
+                temp = Thit.Pose.position;
+                //Debug.Log(temp);
                 transform.position = temp;
             }
 
