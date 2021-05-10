@@ -25,7 +25,7 @@ public class CollisionAtoS : MonoBehaviour
     // 碰撞结束
     void OnCollisionExit(Collision collision)
     {
-       
+        
     }
      // 碰撞持续中
     void OnCollisionStay(Collision collision)
@@ -35,15 +35,19 @@ public class CollisionAtoS : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        
-        Debug.Log("碰撞开始");
+        //碰撞开始
+        //Debug.Log("碰撞开始");
+        //Debug.Log(name);
         //var name = collision.GetComponent<Collider>().name;
         //Debug.Log("Name is " + name);
-        if(name == "apple")
+        if (name == "apple(Clone)" || name == "apple")
         {
+            //如果发生了碰撞的当前物体是苹果物体，则销毁当前物体
             Destroy(this.gameObject);
         }
-        Animator squirrelAnime = GameObject.Find("squirrelM").GetComponent<Animator>();
+        // 销毁苹果后触发松鼠吃动作
+        Animator squirrelAnime = GameObject.Find("squirrelM(Clone)").GetComponent<Animator>();
         squirrelAnime.SetTrigger("eat");
+
     }
 }
