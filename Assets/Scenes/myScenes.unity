@@ -154,6 +154,7 @@ MonoBehaviour:
   squirrel: {fileID: 7745856736144340136, guid: 9276da1366bd96049ba60f9d47af4482,
     type: 3}
   appleY: {fileID: 978659659213619613, guid: 2bc57255ea92b854982e3a727e35152c, type: 3}
+  appleB: {fileID: 2505409009386394209, guid: 9522aae2938b10f468b28efe5ff1b89b, type: 3}
   temperature: 0
   illuminate: 0
   humidity: 0

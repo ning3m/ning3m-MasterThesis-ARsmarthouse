@@ -40,7 +40,7 @@ public class CollisionAtoS : MonoBehaviour
         //Debug.Log(name);
         //var name = collision.GetComponent<Collider>().name;
         //Debug.Log("Name is " + name);
-        if (name == "apple(Clone)" || name == "apple")
+        if (name.Contains("apple"))
         {
             //如果发生了碰撞的当前物体是苹果物体，则销毁当前物体
             Destroy(this.gameObject);

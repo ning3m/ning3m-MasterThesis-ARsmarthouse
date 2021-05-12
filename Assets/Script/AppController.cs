@@ -18,6 +18,7 @@ public class AppController : MonoBehaviour
     public Camera FirstPersonCamera;
     public GameObject squirrel;
     public GameObject appleY;
+    public GameObject appleB;
 
     public float temperature;
     public int illuminate;
@@ -201,6 +202,16 @@ public class AppController : MonoBehaviour
             }
             //todo1 创建颜色不同的苹果，代表不同的操作
             //todo2 实现睡觉和向前走的动作
+            else if (isModelExist == 2 /*苹果2*/)
+            {
+                var gameObject = Instantiate(appleB, hit.Pose.position, hit.Pose.rotation);
+                isModelExist += 1;
+                // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
+                gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
+                // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
+                var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+                gameObject.transform.parent = anchor.transform;
+            }
             else if (isModelExist > 2)
             {
                 //Debug.Log(isModelExist);
