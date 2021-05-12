@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2994560140066834651}
   - component: {fileID: 3315891677809815357}
   - component: {fileID: 3315891677809815358}
-  - component: {fileID: 3315891677809815356}
   - component: {fileID: 3315891677809815355}
+  - component: {fileID: 5904090892183783651}
   m_Layer: 0
   m_Name: appleB
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2505409009386394209}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.101, y: 0.25, z: 0.6}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children:
@@ -64,18 +64,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3315891677809815356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2505409009386394209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1328bed284edfd4d8741c923253e472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3315891677809815355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +80,18 @@ MonoBehaviour:
   yMaxLimit: 80
   xSpeed: 250
   ySpeed: 120
+--- !u!114 &5904090892183783651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2505409009386394209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e575f62de9e7274d97a3049580448fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6865961760707930808
 GameObject:
   m_ObjectHideFlags: 0

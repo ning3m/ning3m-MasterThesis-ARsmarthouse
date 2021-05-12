@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 96137000292476942}
   - component: {fileID: 96137000292476943}
   - component: {fileID: 96137000292476941}
-  - component: {fileID: 38778683}
+  - component: {fileID: 5929178431725451462}
   m_Layer: 0
   m_Name: appleY
   m_TagString: Untagged
@@ -80,7 +80,7 @@ MonoBehaviour:
   yMaxLimit: 80
   xSpeed: 250
   ySpeed: 120
---- !u!114 &38778683
+--- !u!114 &5929178431725451462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 978659659213619613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1328bed284edfd4d8741c923253e472, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e575f62de9e7274d97a3049580448fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8077538147787716932
