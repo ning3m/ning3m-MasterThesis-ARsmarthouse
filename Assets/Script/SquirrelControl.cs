@@ -7,14 +7,21 @@ public class SquirrelControl : MonoBehaviour
     private Animator squirrelAnim;
     private GameObject zzz;
     private bool isActive = true;
-    // Start is called before the first frame update
+    
     void Awake()
     {
+        // 有一个大概是Unity的bug
+        // 有时候animator的state machine会不显示进度条，并且会伴随一些动画播放、参数上的问题（如本次遇到的是sleep->step->normal时，直接从sleep卡到normal）
+        // 此时只要选中一下绑着Animator的GameObject，就可以复原
+        // 原因成谜
+
         squirrelAnim = GameObject.Find("squirrelM(Clone)").GetComponent<Animator>();
+        //squirrelAnim = GameObject.Find("squirrelM").GetComponent<Animator>();
         zzz = GameObject.Find("zzz");
         zzz.gameObject.SetActive(false);
         isActive = false;
     }
+    // Start is called before the first frame update
     void Start()
     {
         
