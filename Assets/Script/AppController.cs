@@ -19,6 +19,7 @@ public class AppController : MonoBehaviour
     public GameObject squirrel;
     public GameObject appleY;
     public GameObject appleB;
+    public GameObject kotori;
 
     public float temperature;
     public int illuminate;
@@ -212,10 +213,21 @@ public class AppController : MonoBehaviour
                 var anchor = hit.Trackable.CreateAnchor(hit.Pose);
                 gameObject.transform.parent = anchor.transform;
             }
-            else if (isModelExist > 2)
+            else if (isModelExist == 3)
+            {
+                var gameObject = Instantiate(kotori, hit.Pose.position, hit.Pose.rotation);
+                isModelExist += 1;
+                // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
+                gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
+                // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
+                var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+                gameObject.transform.parent = anchor.transform;
+            }
+            else if (isModelExist > 3)
             {
                 //Debug.Log(isModelExist);
-                return;//Debug.Log("已有模型");
+                //Debug.Log("已有模型");
+                return;
 
             }
         }
