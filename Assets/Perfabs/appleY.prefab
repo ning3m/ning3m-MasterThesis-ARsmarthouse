@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 96137000292476942}
   - component: {fileID: 96137000292476943}
   - component: {fileID: 96137000292476941}
-  - component: {fileID: 5929178431725451462}
+  - component: {fileID: 1631375552831527970}
   m_Layer: 0
   m_Name: appleY
   m_TagString: Untagged
@@ -80,7 +80,7 @@ MonoBehaviour:
   yMaxLimit: 80
   xSpeed: 250
   ySpeed: 120
---- !u!114 &5929178431725451462
+--- !u!114 &1631375552831527970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

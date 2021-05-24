@@ -78,22 +78,6 @@ public class SquirrelControl : MonoBehaviour
     void OnTriggerEnter(Collider collider)
     {
         //碰撞开始
-        //Debug.Log("碰撞开始");
-        //Debug.Log(name);
-        //var name = collision.GetComponent<Collider>().name;
-        //Debug.Log("Name is " + name);
-        if (squirrelAnim.GetBool("AirConSwitch"))
-        {
-            if (name.Contains("apple"))
-            {
-                //如果发生了碰撞的当前物体是苹果物体，则销毁当前物体
-                Destroy(this.gameObject);
-            }
-            // 销毁苹果后触发松鼠吃动作
-            Animator squirrelAnime = GameObject.Find("squirrelM(Clone)").GetComponent<Animator>();
-            squirrelAnime.SetTrigger("eat");
-        }
-        
 
     }
 }
