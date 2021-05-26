@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisionAtoS : MonoBehaviour
+public class appleControl : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -40,14 +40,18 @@ public class CollisionAtoS : MonoBehaviour
         //Debug.Log(name);
         //var name = collision.GetComponent<Collider>().name;
         //Debug.Log("Name is " + name);
-        if (name.Contains("apple"))
-        {
-            //如果发生了碰撞的当前物体是苹果物体，则销毁当前物体
-            Destroy(this.gameObject);
-        }
-        // 销毁苹果后触发松鼠吃动作
         Animator squirrelAnime = GameObject.Find("squirrelM(Clone)").GetComponent<Animator>();
-        squirrelAnime.SetTrigger("eat");
+        if (squirrelAnime.GetBool("AirConSwitch"))
+        {
+            if (name.Contains("apple"))
+            {
+                //如果发生了碰撞的当前物体是苹果物体，则销毁当前物体
+                Destroy(this.gameObject);
+            }
+            // 销毁苹果后触发松鼠吃动作
+
+            squirrelAnime.SetTrigger("eat");
+        }
 
     }
 }
