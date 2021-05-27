@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.UI;
 
 //using System.Web.Script.Serialization;
 
@@ -19,6 +20,10 @@ public class AppController : MonoBehaviour
     public GameObject appleY;
     public GameObject appleB;
     public GameObject kotori;
+    public GameObject frog;
+    public GameObject snowman;
+    public Button button1;
+    public Button button2;
 
     public float temperature;
     public int illuminate;
@@ -33,7 +38,7 @@ public class AppController : MonoBehaviour
     private bool isAPIAccessed = false;
     private bool isAsynvContentAccessed = false;
     private bool isAsyncOver = false;
-    private bool ifTouch = false;
+    //private bool ifTouch = false;
 
     /*private bool isAPIAccessed2 = false;
     private bool isAsynvContentAccessed2 = false;
@@ -52,11 +57,35 @@ public class AppController : MonoBehaviour
 
     async void Start()
     {
+        button1.onClick.AddListener(Button1Click);
+        button2.onClick.AddListener(Button2Click);
+        button1.gameObject.SetActive(false);
+        button2.gameObject.SetActive(false);
         OnCheckDevice();
     }
     private void OnCheckDevice()
     {
         throw new NotImplementedException();
+    }
+
+    void Button1Click()
+    {
+        if (isAsyncOver)
+        {
+            if (temperature > 20)
+            {
+                isModelExist = 1;
+            }
+            else if(temperature <= 20)
+            {
+                isModelExist = 2;
+            }
+        }
+        
+    }
+    void Button2Click()
+    {
+        isModelExist = 3;
     }
 
     //  每帧调用一次 Update
@@ -171,29 +200,57 @@ public class AppController : MonoBehaviour
         // 发出射线Raycast(float x, float y, TrackableHitFlags filter, out TrackableHit hitResult)
         // 对Arcore跟踪的物理对象执行光线投射，参考1，2为屏幕坐标点，一旦发生碰撞则返回，返回值为Bool型，true表示发生碰撞,false表示未发生碰撞。
         {
+            Debug.Log(isModelExist);
             if ((hit.Trackable is DetectedPlane) && Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position, hit.Pose.rotation * Vector3.up) < 0)
             //if (!Input.GetMouseButton(0))
             {
                 // Use hit pose and camera pose to check if hittest is from the back of the plane, if it is, no need to create the anchor. 
                 Debug.Log("射线击中了DetectedPlane的背面！");
             }
-            
-            else if(isModelExist == 0/*松鼠*/)
+            else if (isModelExist == 0/*菜单*/)
             {
-                // 如果是击中了检测到的平面并且又不是平面的背面，我们则实例化我们的Prefab，
-                var gameObject = Instantiate(squirrel, hit.Pose.position, hit.Pose.rotation);
-                isModelExist += 1;
+                button1.gameObject.SetActive(true);
+                button2.gameObject.SetActive(true);
+                isModelExist = 5;
+                //todo 这里监听到点击后应该让button消失，然后模型出现后每次都要变成5，否则会出现多个
+            }
+            else if (isModelExist == 1/*青蛙*/)
+            {
+                var gameObject = Instantiate(frog, hit.Pose.position, hit.Pose.rotation);
+                //isModelExist += 1;
                 // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
                 gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
                 // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
                 var anchor = hit.Trackable.CreateAnchor(hit.Pose);
                 gameObject.transform.parent = anchor.transform;
             }
+            else if (isModelExist == 2/*雪人*/)
+            {
+                var gameObject = Instantiate(snowman, hit.Pose.position, hit.Pose.rotation);
+                //isModelExist += 1;
+                // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
+                gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
+                // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
+                var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+                gameObject.transform.parent = anchor.transform;
+            }
+            else if(isModelExist == 3/*松鼠*/)
+            {
+                // 如果是击中了检测到的平面并且又不是平面的背面，我们则实例化我们的Prefab，
+                var gameObject = Instantiate(squirrel, hit.Pose.position, hit.Pose.rotation);
+                //isModelExist += 1;
+                // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
+                gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
+                // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
+                var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+                gameObject.transform.parent = anchor.transform;
+                //todo 提示创建苹果
+            }
 
-            else if (isModelExist == 1/*苹果1*/)
+            else if (isModelExist == 4/*苹果1*/)
             {
                 var gameObject = Instantiate(appleY, hit.Pose.position, hit.Pose.rotation);
-                isModelExist += 1;
+                //isModelExist += 1;
                 // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
                 gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
                 // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
@@ -202,27 +259,17 @@ public class AppController : MonoBehaviour
             }
             //todo1 创建颜色不同的苹果，代表不同的操作
             //todo2 实现睡觉和向前走的动作
-            else if (isModelExist == 2 /*苹果2*/)
+            else if (isModelExist == 5 /*苹果2*/)
             {
                 var gameObject = Instantiate(appleB, hit.Pose.position, hit.Pose.rotation);
-                isModelExist += 1;
+                //isModelExist += 1;
                 // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
                 gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
                 // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
                 var anchor = hit.Trackable.CreateAnchor(hit.Pose);
                 gameObject.transform.parent = anchor.transform;
             }
-            else if (isModelExist == 3)
-            {
-                var gameObject = Instantiate(kotori, hit.Pose.position, hit.Pose.rotation);
-                isModelExist += 1;
-                // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
-                gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
-                // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
-                var anchor = hit.Trackable.CreateAnchor(hit.Pose);
-                gameObject.transform.parent = anchor.transform;
-            }
-            else if (isModelExist > 3)
+            else if (isModelExist > 5)
             {
                 //Debug.Log(isModelExist);
                 //Debug.Log("已有模型");
