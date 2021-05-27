@@ -21,6 +21,9 @@ Config.cs
 **/Free Pack/**
 *.meta
 *.mat
+
+# too large
+flowerM.fbx 
 MasterThesis-ARsmarthouse
 
 

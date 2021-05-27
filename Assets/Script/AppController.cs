@@ -1,6 +1,5 @@
 ﻿using GoogleARCore;
 using System;
-using UnityEngine;
 using System.Net;
 using System.IO;
 using System.Threading;
