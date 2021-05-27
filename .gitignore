@@ -21,6 +21,7 @@ Config.cs
 **/Free Pack/**
 *.meta
 *.mat
+*.fbx
 
 # too large
 flowerM.fbx 
