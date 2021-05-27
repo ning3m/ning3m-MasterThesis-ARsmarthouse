@@ -11,6 +11,10 @@ public class JsonOp
 {
 	private RootObject rb;
 
+	void Start()
+    {
+
+    }
 	private void getJson(string responseData)
     {
 		//responseData.Replace("[", "").Replace("]", "");
