@@ -300,6 +300,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirstPersonCamera: {fileID: 238629176}
+  temp: {fileID: 1849457055}
+  light: {fileID: 1807131177}
+  temperature: 0
+  illuminate: 0
 --- !u!4 &149857869
 Transform:
   m_ObjectHideFlags: 0
@@ -340,7 +344,7 @@ PrefabInstance:
     - target: {fileID: 3903048487461564931, guid: e76989f30c5d6fd41bd5475011f1ad3b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3903048487461564931, guid: e76989f30c5d6fd41bd5475011f1ad3b,
         type: 3}
@@ -439,6 +443,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e76989f30c5d6fd41bd5475011f1ad3b, type: 3}
+--- !u!1 &824989889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 445365572, guid: e76989f30c5d6fd41bd5475011f1ad3b,
+    type: 3}
+  m_PrefabInstance: {fileID: 689624367}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &824989890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824989889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3506c35c13b78949af065cafd7c609a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1267619766
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,6 +614,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7af52ef9f949a849a7f2a6f3d8046a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1807131177 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 445365574, guid: e76989f30c5d6fd41bd5475011f1ad3b,
+    type: 3}
+  m_PrefabInstance: {fileID: 689624367}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824989889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1831191005
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,5 +669,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1849457055 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1070467955, guid: e76989f30c5d6fd41bd5475011f1ad3b,
+    type: 3}
+  m_PrefabInstance: {fileID: 689624367}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
