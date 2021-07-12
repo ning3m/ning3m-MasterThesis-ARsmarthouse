@@ -15,7 +15,7 @@ public class HttpOperation
     public string responsedHTTPHead;
     public string responseData;
     public string feebBackData;
-    private string lightOpration = "on";
+    //private string lightOpration = "off";
 
 
 
@@ -70,7 +70,7 @@ public class HttpOperation
         isAsyncOver = true;
     }
 
-    public async void lightControl()
+    public async void lightControl(string lightOpration)
     {
         string url = config.baseURL + "/1/appliances/" + config.lightID + "/light";
         string token = "Bearer " + config.accessToken;
@@ -84,5 +84,6 @@ public class HttpOperation
         Debug.Log(responseMessage);
         responsedHTTPHead = responseMessage.Content.ReadAsStringAsync().Result;
         isAsyncOver = true;
+        Debug.Log("调用了lightcontrol内");
     }
 }

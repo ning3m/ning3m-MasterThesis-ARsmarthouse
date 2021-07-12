@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 //using System.Web.Script.Serialization;
 
@@ -24,10 +25,14 @@ public class AppController : MonoBehaviour
     public GameObject snowman;
     public Button button1;
     public Button button2;
+    public GameObject text;
 
     public float temperature;
     public int illuminate;
     public int humidity;
+    private bool isHot = false;
+    private bool isCold = false;
+    private int tempChange = 0;
 
     private HttpOperation Device = new HttpOperation();
     private JsonOp JsonOp = new JsonOp();
@@ -54,13 +59,17 @@ public class AppController : MonoBehaviour
 
 
     //  将其用于初始化
-
+    
+    async void Awake()
+    {
+        text.GetComponent<TMP_Text>().text = "Click on detected plane to check temperature";
+    }
     async void Start()
     {
-        button1.onClick.AddListener(Button1Click);
-        button2.onClick.AddListener(Button2Click);
-        button1.gameObject.SetActive(false);
-        button2.gameObject.SetActive(false);
+        //button1.onClick.AddListener(Button1Click);
+        //button2.onClick.AddListener(Button2Click);
+        //button1.gameObject.SetActive(false);
+        //button2.gameObject.SetActive(false);
         OnCheckDevice();
     }
     private void OnCheckDevice()
@@ -68,7 +77,7 @@ public class AppController : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    void Button1Click()
+    /*void Button1Click()
     {
         if (isAsyncOver)
         {
@@ -82,11 +91,11 @@ public class AppController : MonoBehaviour
             }
         }
         
-    }
-    void Button2Click()
+    }*/
+    /*void Button2Click()
     {
         isModelExist = 3;
-    }
+    }*/
 
     //  每帧调用一次 Update
 
@@ -119,44 +128,27 @@ public class AppController : MonoBehaviour
             //illuminate = JsonOp.getIlluminate(responseData);
             //humidity = JsonOp.getHumidity(responseData);
             Debug.Log(temperature);
+            if (temperature < 20) {
+                isModelExist = 1;
+                isCold = true;
+                tempChange = 22 - (int)temperature;
+            } 
+            else if (temperature > 26)
+            {
+                isModelExist = 2;
+                isHot = true;
+                tempChange = (int)temperature - 24;
+            }
+                
             /*Debug.Log(illuminate);
             Debug.Log(humidity);*/
 
             isAsynvContentAccessed = true;
         }
-        AnimaTrigger();
+        
     }
 
-    private void AnimaTrigger()
-    {
-        //Animator kotoriAnim = GameObject.Find("kotori").GetComponent<Animator>();
-        //kotoriAnim.SetFloat("temperature", temperature);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            //kotoriAnim.SetTrigger("touch");
-            //Debug.Log("Set Trigger touch");
-        }
-
-        /*Ray mRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit mHit;
-        if (Physics.Raycast(mRay, out mHit))
-        {
-            if (mHit.collider.gameObject.tag == "kotoriColdJump")
-            {
-                kotoriAnim.SetTrigger("touch");
-                ifTouch = true;
-                Debug.Log("touch has been down!!!");
-                // Device.updateSetting();
-            }
-            if (true/*aircon is open)*/
-        /*{
-
-            kotoriAnim.SetBool("heater", true);
-        }
-    }
-}*/
-    }
 
     void Update()
     {
@@ -207,36 +199,36 @@ public class AppController : MonoBehaviour
                 // Use hit pose and camera pose to check if hittest is from the back of the plane, if it is, no need to create the anchor. 
                 Debug.Log("射线击中了DetectedPlane的背面！");
             }
-            else if (isModelExist == 0/*菜单*/)
+            else if (isModelExist == 1/*雪人*/)
             {
-                button1.gameObject.SetActive(true);
-                button2.gameObject.SetActive(true);
-                isModelExist = 5;
-                //todo 这里监听到点击后应该让button消失，然后模型出现后每次都要变成5，否则会出现多个
-            }
-            else if (isModelExist == 1/*青蛙*/)
-            {
-                var gameObject = Instantiate(frog, hit.Pose.position, hit.Pose.rotation);
+                var gameObject = Instantiate(snowman, hit.Pose.position, Quaternion.Euler(90.0f, 0.0f, 150.0f));
+                text.GetComponent<TMP_Text>().text = "Oh, it`s cold. \n Do you want to check air conditioner?";
                 //isModelExist += 1;
                 // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
                 gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
                 // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
                 var anchor = hit.Trackable.CreateAnchor(hit.Pose);
                 gameObject.transform.parent = anchor.transform;
+                isModelExist = 3;
+                
             }
-            else if (isModelExist == 2/*雪人*/)
+            else if (isModelExist == 2/*青蛙*/)
             {
-                var gameObject = Instantiate(snowman, hit.Pose.position, hit.Pose.rotation);
+                var gameObject = Instantiate(frog, hit.Pose.position, Quaternion.Euler(90.0f, 0.0f, 150.0f));
                 //isModelExist += 1;
+                text.GetComponent<TMP_Text>().text = "Oh, it`s hot. \n Do you want to check air conditioner?";
                 // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
                 gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
                 // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
                 var anchor = hit.Trackable.CreateAnchor(hit.Pose);
                 gameObject.transform.parent = anchor.transform;
+                isModelExist = 3;
             }
+
             else if(isModelExist == 3/*松鼠*/)
             {
                 // 如果是击中了检测到的平面并且又不是平面的背面，我们则实例化我们的Prefab，
+                text.GetComponent<TMP_Text>().text = "Touch the squirrel to turn on/off the air conditioner.";
                 var gameObject = Instantiate(squirrel, hit.Pose.position, hit.Pose.rotation);
                 //isModelExist += 1;
                 // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
@@ -244,31 +236,48 @@ public class AppController : MonoBehaviour
                 // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
                 var anchor = hit.Trackable.CreateAnchor(hit.Pose);
                 gameObject.transform.parent = anchor.transform;
+                isModelExist = 4;
                 //todo 提示创建苹果
             }
-
-            else if (isModelExist == 4/*苹果1*/)
+            else if (isModelExist == 4/*苹果*/)
             {
-                var gameObject = Instantiate(appleY, hit.Pose.position, hit.Pose.rotation);
-                //isModelExist += 1;
-                // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
-                gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
-                // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
-                var anchor = hit.Trackable.CreateAnchor(hit.Pose);
-                gameObject.transform.parent = anchor.transform;
+                if (isHot)
+                {
+                    text.GetComponent<TMP_Text>().text = "It`s hot. \n We recommend decreasing the temperature.";
+                    var gameObject = Instantiate(appleB, hit.Pose.position, hit.Pose.rotation);
+                    gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
+                    // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
+                    var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+                    gameObject.transform.parent = anchor.transform;
+                    tempChange = tempChange - 1;
+                    if (tempChange == 0)
+                    {
+                        isModelExist = 5;
+                    }
+                }
+               
+                else if (isCold)
+                {
+                    text.GetComponent<TMP_Text>().text = "It`s cold. \n We recommend increasing the temperature.";
+                    var gameObject = Instantiate(appleY, hit.Pose.position, hit.Pose.rotation);
+                    gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
+                    // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
+                    var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+                    gameObject.transform.parent = anchor.transform;
+                    tempChange = tempChange - 1;
+                    if (tempChange == 0)
+                    {
+                        isModelExist = 5;
+                    }
+                }
+            }
+            else if (isModelExist == 5)
+            {
+                text.GetComponent<TMP_Text>().text = "Please wait, \n the right temperature will be reached soon.";
+                isModelExist = 6;
             }
             //todo1 创建颜色不同的苹果，代表不同的操作
             //todo2 实现睡觉和向前走的动作
-            else if (isModelExist == 5 /*苹果2*/)
-            {
-                var gameObject = Instantiate(appleB, hit.Pose.position, hit.Pose.rotation);
-                //isModelExist += 1;
-                // Compensate for the hitPose rotation facing away from the raycast (i.e.camera).
-                gameObject.transform.Rotate(0, mModelRotation, 0, Space.Self);
-                // 生成一个anchor，并将我们的Prefab挂载到这个anchor上
-                var anchor = hit.Trackable.CreateAnchor(hit.Pose);
-                gameObject.transform.parent = anchor.transform;
-            }
             else if (isModelExist > 5)
             {
                 //Debug.Log(isModelExist);
